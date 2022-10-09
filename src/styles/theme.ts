@@ -30,10 +30,10 @@ const Button: ComponentStyleConfig = {
     },
     'solid-yellow': {
       bg: 'pallete.yellow',
-      color: 'white'
+      color: 'gray.'
     },
     cancel: {
-      bg: 'company.base',
+      bg: 'pallete.red',
       color: 'white'
     },
     create: {
