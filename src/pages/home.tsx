@@ -1,6 +1,5 @@
-import { Box, Button, Flex, Image, VStack } from '@chakra-ui/react'
-
 import { useEffect, useRef, useState } from 'react'
+import { Box, Button, Flex, Image, VStack } from '@chakra-ui/react'
 
 import { Dashboard } from '../components/Dashboard'
 import { SupporterArea } from '../components/SupporterArea'
