@@ -1,15 +1,29 @@
 import { Box, Button, Flex, VStack } from '@chakra-ui/react'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { Dashboard } from '../components/Dashboard'
 import { SupporterArea } from '../components/SupporterArea'
 import { UserArea } from '../components/UserArea'
+import { useLayout } from '../hooks/useLayout'
+import { useWindowResize } from '../hooks/useWindowResize'
 
 export default function Home() {
   const [homeMode, setHomeMode] = useState<'user' | 'supporter' | 'dashboard'>(
     'dashboard'
   )
+
+  const contentContainerRef = useRef<HTMLDivElement>(null)
+
+  const { setContentContainerWidth } = useLayout()
+
+  const { width } = useWindowResize()
+
+  useEffect(() => {
+    if (contentContainerRef.current) {
+      setContentContainerWidth(contentContainerRef.current.offsetWidth)
+    }
+  }, [contentContainerRef, width, setContentContainerWidth])
 
   return (
     <Flex height="100vh">
@@ -39,21 +53,8 @@ export default function Home() {
             </Button>
           </VStack>
         </Box>
-        {/* <Flex color="white" mt={4} h="100%" align="flex-end" pb={4}>
-          <VStack>
-            <Text as="u" cursor="pointer">
-              Gostaria de melhorar o seu negócio?
-            </Text>
-            <Text as="u" cursor="pointer">
-              Como conseguir maiores valores de microcrédito?
-            </Text>
-            <Text as="u" cursor="pointer">
-              Aconselhamento financeiro
-            </Text>
-          </VStack>
-        </Flex> */}
       </Flex>
-      <Flex w="70%" p={8} direction="column">
+      <Flex w="70%" p={8} direction="column" ref={contentContainerRef}>
         {homeMode === 'dashboard' ? (
           <Dashboard />
         ) : homeMode === 'user' ? (
