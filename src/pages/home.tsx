@@ -26,8 +26,15 @@ export default function Home() {
   }, [contentContainerRef, width, setContentContainerWidth])
 
   return (
-    <Flex height="100vh">
-      <Flex w="30%" bg="pallete.blue2" align="center" pt={4} direction="column">
+    <Flex>
+      <Flex
+        w="30%"
+        h="100vh"
+        bg="pallete.blue2"
+        align="center"
+        pt={4}
+        direction="column"
+      >
         <Box px={8} mt={8}>
           <VStack align="flex-start">
             <Button

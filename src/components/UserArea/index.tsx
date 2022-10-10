@@ -22,7 +22,15 @@ import {
   NumberInputField,
   NumberInputStepper,
   NumberIncrementStepper,
-  NumberDecrementStepper
+  NumberDecrementStepper,
+  TableContainer,
+  Table,
+  Thead,
+  Tr,
+  Th,
+  Tbody,
+  Td,
+  HStack
 } from '@chakra-ui/react'
 import { ErrorMessage } from '@hookform/error-message'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -31,9 +39,25 @@ import { Doughnut } from 'react-chartjs-2'
 import { useForm } from 'react-hook-form'
 import { FaPlus } from 'react-icons/fa'
 import * as yup from 'yup'
+import { FaEye } from 'react-icons/fa'
+import { useRef } from 'react'
+
+ChartJS.register(ArcElement, Tooltip, Legend)
 
 export function UserArea() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const {
+    isOpen: modalRequestMicrocredit,
+    onOpen: onOpenRequestMicrocredit,
+    onClose: onCloseRequestMicrocredit
+  } = useDisclosure()
+
+  const {
+    isOpen: modalListMicrocredit,
+    onOpen: onOpenListMicrocredit,
+    onClose: onCloseListMicrocredit
+  } = useDisclosure()
+
+  const contentContainerRef = useRef<HTMLDivElement>(null)
 
   const data = {
     labels: [],
@@ -63,7 +87,10 @@ export function UserArea() {
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal
+        isOpen={modalRequestMicrocredit}
+        onClose={onCloseRequestMicrocredit}
+      >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Solicitação de Microcrédito</ModalHeader>
@@ -122,7 +149,65 @@ export function UserArea() {
           </ModalBody>
 
           <ModalFooter>
-            <Button variant="cancel" mr={3} onClick={onClose} w="100%">
+            <Button
+              variant="cancel"
+              mr={3}
+              onClick={onCloseRequestMicrocredit}
+              w="100%"
+            >
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+      <Modal
+        isOpen={modalListMicrocredit}
+        onClose={onCloseListMicrocredit}
+        size="lg"
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Solicitação de Microcrédito</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody ref={contentContainerRef} w="100%">
+            <TableContainer
+              w={`${
+                contentContainerRef.current?.offsetWidth &&
+                contentContainerRef.current?.offsetWidth - 50
+              }px`}
+            >
+              <Table variant="striped" colorScheme="green">
+                <Thead>
+                  <Tr>
+                    <Th>#</Th>
+                    <Th isNumeric>Valor</Th>
+                    <Th isNumeric>Fundo</Th>
+                    <Th></Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  <Tr>
+                    <Td>0001</Td>
+                    <Td isNumeric>800.00</Td>
+                    <Td isNumeric>00.00</Td>
+                    <Td>
+                      <Button variant="solid-yellow" leftIcon={<FaEye />}>
+                        Ver
+                      </Button>
+                    </Td>
+                  </Tr>
+                </Tbody>
+              </Table>
+            </TableContainer>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button
+              variant="cancel"
+              mr={3}
+              onClick={onCloseListMicrocredit}
+              w="100%"
+            >
               Close
             </Button>
           </ModalFooter>
@@ -130,11 +215,22 @@ export function UserArea() {
       </Modal>
       <Flex h="100%">
         <Flex w="70%" align="center" direction="column">
-          <Flex w="100%">
-            <Button colorScheme="green" leftIcon={<FaPlus />} onClick={onOpen}>
+          <HStack w="100%">
+            <Button
+              colorScheme="green"
+              leftIcon={<FaPlus />}
+              onClick={onOpenRequestMicrocredit}
+            >
               Solicitar Microcrédito
             </Button>
-          </Flex>
+            <Button
+              colorScheme="yellow"
+              leftIcon={<FaEye />}
+              onClick={onOpenListMicrocredit}
+            >
+              Minhas Solicitações
+            </Button>
+          </HStack>
           <VStack align="flex-start" mt={4}>
             <Heading>Guilherme J. Floyd</Heading>
             <Text>Vendedor Ambulante</Text>
