@@ -71,7 +71,7 @@ export function Dashboard() {
           </Box>
         </HStack>
       </Flex>
-      <Flex align="center" h="100%">
+      <Flex align="center" h="100%" mt={8}>
         <Flex w="50%">
           <Doughnut data={data} />
         </Flex>
