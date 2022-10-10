@@ -1,4 +1,4 @@
-import { Box, Button, Flex, VStack } from '@chakra-ui/react'
+import { Box, Button, Flex, Image, VStack } from '@chakra-ui/react'
 
 import { useEffect, useRef, useState } from 'react'
 
@@ -30,11 +30,12 @@ export default function Home() {
       <Flex
         w="30%"
         h="100vh"
-        bg="pallete.blue2"
+        bg="blue.50"
         align="center"
         pt={4}
         direction="column"
       >
+        <Image src="/images/logo.png" alt="" />
         <Box px={8} mt={8}>
           <VStack align="flex-start">
             <Button

@@ -15,8 +15,10 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { ErrorMessage } from '@hookform/error-message'
+import { useRouter } from 'next/router'
 
 export default function Register() {
+  const router = useRouter()
   const validation = yup.object().shape({})
 
   const {
@@ -173,7 +175,12 @@ export default function Register() {
             </FormControl>
           </SimpleGrid>
         </VStack>
-        <Button w="100%" variant="solid-blue" mt={8}>
+        <Button
+          w="100%"
+          variant="solid-blue"
+          mt={8}
+          onClick={() => router.push('register/meeting-client')}
+        >
           PROSSEGUIR
         </Button>
       </Box>
