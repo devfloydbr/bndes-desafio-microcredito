@@ -41,10 +41,13 @@ import { FaPlus } from 'react-icons/fa'
 import * as yup from 'yup'
 import { FaEye } from 'react-icons/fa'
 import { useRef } from 'react'
+import { useRouter } from 'next/router'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 export function UserArea() {
+  const router = useRouter()
+
   const {
     isOpen: modalRequestMicrocredit,
     onOpen: onOpenRequestMicrocredit,
@@ -191,7 +194,11 @@ export function UserArea() {
                     <Td isNumeric>800.00</Td>
                     <Td isNumeric>00.00</Td>
                     <Td>
-                      <Button variant="solid-yellow" leftIcon={<FaEye />}>
+                      <Button
+                        variant="solid-yellow"
+                        leftIcon={<FaEye />}
+                        onClick={() => router.push('/solicitations/1')}
+                      >
                         Ver
                       </Button>
                     </Td>

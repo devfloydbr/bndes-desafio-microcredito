@@ -1,5 +1,4 @@
 import {
-  Button,
   Flex,
   Heading,
   IconButton,
@@ -58,12 +57,16 @@ export default function ReadSolicitation() {
           <Flex w="100%" justify="space-between" mt={8}>
             <Heading size="md">Fundo Garantidor Disponível:</Heading>
             <Text color="green.600" fontWeight="bold">
-              + R$ 3.000,00
+              + R$ 5.000,00
             </Text>
           </Flex>
           <Flex w="100%" justify="space-between">
             <Heading size="sm">ACME LTDA:</Heading>
             <Text color="green.400">+ R$ 3.000,00</Text>
+          </Flex>
+          <Flex w="100%" justify="space-between">
+            <Heading size="sm">Aporte Descentralizado:</Heading>
+            <Text color="green.400">+ R$ 2.000,00</Text>
           </Flex>
         </Flex>
       </Flex>
